@@ -19,4 +19,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/got', 'ListController@show')->middleware('auth');
 
-Route::get('/recettes', 'ListRecettesController@show');
+Route::resource('/recettes', 'RecetteController');
