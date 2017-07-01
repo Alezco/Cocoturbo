@@ -6,7 +6,9 @@
         <div class="jumbotron text-center">
             <h2>{{ $recette->recettes_name }}</h2>
             <p>
-                <strong>Level:</strong> {{ $recette->type_id }}
+                <strong>Type de plat :</strong> {{ $type }}
+                <strong>Description :</strong> {{ $recette->description }}
+                {{ HTML::image($recette->image_url) }}
             </p>
         </div>
     </div>

@@ -15,6 +15,7 @@
         <tr>
             <td>Name</td>
             <td>Type</td>
+            <td>Image</td>
             <td>Actions</td>
         </tr>
         </thead>
@@ -23,6 +24,7 @@
             <tr>
                 <td>{{ $value->recettes_name }}</td>
                 <td>{{ $value->type_id }}</td>
+                <td>{{ HTML::image($value->image_url) }}</td>
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>
                     <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->

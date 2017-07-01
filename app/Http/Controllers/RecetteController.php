@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Recette;
+use App\RecetteType;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use View;
@@ -49,7 +50,8 @@ class RecetteController extends Controller {
     {
         $rules = array(
             'name'       => 'required',
-            'type'      => 'required'
+            'type'      => 'required',
+            'image'     => 'nullable'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -66,7 +68,8 @@ class RecetteController extends Controller {
             // store
             $recette = new \App\Recette();
             $recette->recettes_name = Input::get('name');
-
+            $recette->description = Input::get('description');
+            $recette->image_url = Input::get('image');
             $types = \App\RecetteType::all();
             $typesIds = $types->pluck('id');
 
@@ -89,11 +92,11 @@ class RecetteController extends Controller {
     {
         // get the nerd
         $recette = Recette::find($id);
-
+        $type = RecetteType::find($recette->type_id);
         // show the view and pass the nerd to it
         return View::make('recettes.show')
-            ->with('recette', $recette);
-
+            ->with('recette', $recette)
+            ->with('type', $type);
     }
 
     /**
@@ -126,7 +129,8 @@ class RecetteController extends Controller {
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'name'       => 'required',
-            'type'      => 'required'
+            'type'      => 'required',
+            'image'     => 'nullable'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -140,7 +144,8 @@ class RecetteController extends Controller {
             // store
             $recette = Recette::find($id);
             $recette->recettes_name = Input::get('name');
-
+            $recette->description = Input::get('description');
+            $recette->image_url = Input::get('image');
             $types = \App\RecetteType::all();
             $typesIds = $types->pluck('id');
 

@@ -13,7 +13,14 @@
             {{ Form::label('name', 'Name') }}
             {{ Form::text('name', null, array('class' => 'form-control')) }}
         </div>
-
+        <div class="form-group">
+            {{ Form::label('description', 'Description') }}
+            {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('image', 'Image url') }}
+            {{ Form::text('image', Input::old('image'), array('class' => 'form-control')) }}
+        </div>
         <div class="form-group">
             {{ Form::label('type', 'Type') }}
             {{ Form::select('type', $types) }}
