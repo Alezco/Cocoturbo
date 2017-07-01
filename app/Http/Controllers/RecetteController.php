@@ -92,10 +92,12 @@ class RecetteController extends Controller {
         // get the nerd
         $recette = Recette::find($id);
         $type = RecetteType::find($recette->type_id);
+        $comments = Recette::find($id)->comments()->with('user')->get();
         // show the view and pass the nerd to it
         return View::make('recettes.show')
             ->with('recette', $recette)
-            ->with('type', $type);
+            ->with('type', $type)
+            ->with('comments', $comments);
     }
 
     /**

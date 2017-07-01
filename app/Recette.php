@@ -11,4 +11,9 @@ class Recette extends Model
     public function type(){
         return $this->hasOne('App\RecetteType', 'id', 'type_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
