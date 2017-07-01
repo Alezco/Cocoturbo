@@ -8,7 +8,7 @@ class Recette extends Model
 {
     protected $fillable = array('recettes_name', 'description', 'image_url', 'created_at', 'updated_at');
 
-    public function Recette_type() {
-        return $this->hasOne('recette_type'); // this matches the Eloquent model
+    public function type(){
+        return $this->hasOne('App\RecetteType', 'id', 'type_id');
     }
 }

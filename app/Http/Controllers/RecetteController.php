@@ -20,8 +20,7 @@ class RecetteController extends Controller {
     public function index()
     {
         // get all the nerds
-        $recettes = \App\Recette::all();
-
+        $recettes = \App\Recette::with('type')->get();
         // load the view and pass the nerds
         return View::make('recettes.index')
             ->with('recettes', $recettes);

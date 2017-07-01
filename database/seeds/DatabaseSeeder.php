@@ -25,8 +25,22 @@ class RecetteTypeSeeder extends Seeder {
 
         // clear our database ------------------------------------------
         DB::table('recette_types')->delete();
+        DB::table('recettes')->delete();
+        DB::table('users')->delete();
+        DB::table('comments')->delete();
 
-        // seed our bears table -----------------------
+        $u1 = \App\User::create(array(
+            'name' => 'User1',
+            'email' => 'user1@email.com',
+            'password' => bcrypt('password'),
+        ));
+
+        $u2 = \App\User::create(array(
+            'name' => 'user2',
+            'email' => 'user2@email.com',
+            'password' => bcrypt('password'),
+        ));
+
         // we'll create three different bears
 
         // bear 1 is named Lawly. She is extremely dangerous. Especially when hungry.
@@ -46,10 +60,9 @@ class RecetteTypeSeeder extends Seeder {
 
         // seed our fish table ------------------------
         // our fish wont have names... because theyre going to be eaten
-
         // we will use the variables we used to create the bears to get their id
 
-        \App\Recette::create(array(
+        $r1 = \App\Recette::create(array(
             'recettes_name'  => "Cake au légume",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
@@ -160,6 +173,12 @@ class RecetteTypeSeeder extends Seeder {
             'type_id' => $dessert->id
         ));
         $this->command->info('Dessert initialisé');
+
+        \App\Comment::create(array(
+            'comment_content' => "j'ai faim",
+            'user_id' => $u1->id,
+            'recette_id' => $r1->id
+        ));
     }
 
 }

@@ -1,42 +1,30 @@
 @extends('layouts.app')
-
+{{ HTML::style('css/recettes_list.css') }}
 @section('content')
-<div class="container">
-    <h1>All the recettes</h1>
-    <a class="btn btn-small btn-success" href="{{ URL::to('recettes/create') }}">Create recettes</a>
+    <div class="container">
+        <h1>All the recettes</h1>
+        <a class="btn btn-small btn-success" href="{{ URL::to('recettes/create') }}">Create recettes</a>
 
 
-    <!-- will be used to show any messages -->
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <td>Name</td>
-            <td>Type</td>
-            <td>Image</td>
-            <td>Actions</td>
-        </tr>
-        </thead>
-        <tbody>
+        <!-- will be used to show any messages -->
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
         @foreach($recettes as $key => $value)
-            <tr>
-                <td>{{ $value->recettes_name }}</td>
-                <td>{{ $value->type_id }}</td>
-                <td>{{ HTML::image($value->image_url) }}</td>
-                <!-- we will also add show, edit, and delete buttons -->
-                <td>
-                    <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                    <!-- we will add this later since its a little more complicated than the other two buttons -->
-                    <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('recettes/' . $value->id) }}">Show this recettes</a>
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('recettes/' . $value->id . '/edit') }}">Edit this recettes</a>
-                </td>
-            </tr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <a href="{{ URL::to('recettes/' . $value->id) }}">
+                        {{ HTML::image($value->image_url, 'alt', array( 'width' => 250, 'height' => 250, 'class' => 'img-responsive img-box img-thumbnail' )) }}
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9">
+                    <h4><a href="{{ URL::to('recettes/' . $value->id) }}">{{ $value->recettes_name }}</a></h4>
+                    <strong>{{ $value->type->type_name }}</strong>
+                    <p>{{ $value->description }}</p>
+                </div>
+            </div>
+            <br />
+            <br />
         @endforeach
-        </tbody>
-    </table>
-</div>
+    </div>
 @endsection
