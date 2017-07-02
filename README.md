@@ -17,6 +17,11 @@ Enjoy on localhost:8000
 
 ## Usefull information
 
-Account:
-email : user1@email.com
+Account: \
+email : user1@email.com \
 password : password
+
+Config of .env file for production: \
+APP_ENV=production \
+APP_DEBUG=false
+

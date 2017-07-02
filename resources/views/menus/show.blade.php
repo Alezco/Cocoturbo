@@ -4,7 +4,6 @@
     <div class="container">
         <h1>Showing <strong>{{ $menu[0]->menu_title }}</strong></h1>
     </div>
-    <div class="container"><h1>Bootstrap  tab panel example (using nav-pills)  </h1></div>
     <div id="exTab1" class="container">
         <ul  class="nav nav-pills">
             <li class="active"><a  href="#1a" data-toggle="tab">Entree</a></li>
