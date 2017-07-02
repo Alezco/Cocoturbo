@@ -26,7 +26,8 @@ class RecetteController extends Controller {
         $recettes = \App\Recette::where('recettes_name','like','%'.$search.'%')->with('type')->get();
         // load the view and pass the nerds
         return View::make('recettes.index')
-            ->with('recettes', $recettes);
+            ->with('recettes', $recettes)
+            ->with('search', $search);
     }
 
     /**
