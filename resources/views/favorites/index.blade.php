@@ -14,10 +14,13 @@
                         {{ HTML::image($favorite->recette->image_url, 'alt', array( 'width' => 250, 'height' => 250, 'class' => 'img-responsive img-box img-thumbnail' )) }}
                     </a>
                 </div>
-                <div class="col-xs-12 col-sm-9 col-md-9">
+                <div class="col-xs-12 col-sm-7 col-md-7">
                     <h4><a href="{{ URL::to('recettes/' . $favorite->recette->id) }}">{{ $favorite->recette->recettes_name }}</a></h4>
                     <strong>{{ $favorite->recette->type->type_name }}</strong>
                     <p>{{ $favorite->recette->description }}</p>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    @include('favorites.delete')
                 </div>
             </div>
             <br />

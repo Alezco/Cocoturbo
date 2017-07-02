@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use View;
@@ -107,6 +108,12 @@ class FavoriteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete
+        $fav = Favorite::find($id);
+        $fav->delete();
+
+        // redirect
+        Session::flash('message', 'Successfully deleted the favorite!');
+        return Redirect::to('favorite');
     }
 }

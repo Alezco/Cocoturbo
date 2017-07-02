@@ -24,10 +24,11 @@ Route::get('/got', 'ListController@show')->middleware('auth');
 
 Route::resource('/recettes', 'RecetteController');
 Route::get('/recettes/create', 'RecetteController@create')->middleware('auth');
-Route::get('/recettes/edit', 'RecetteController@create')->middleware('auth');
+Route::get('/recettes/edit', 'RecetteController@edit')->middleware('auth');
 
 Route::get('/favorite', 'FavoriteController@index')->middleware('auth');
 Route::post('/favorite/create', array('uses' => 'FavoriteController@store'));
+Route::delete('/favorite/delete/{id}', array('uses' => 'FavoriteController@destroy'));
 
 Route::resource('/comments', 'CommentController');
 
