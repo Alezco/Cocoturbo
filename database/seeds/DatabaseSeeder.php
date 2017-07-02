@@ -30,7 +30,7 @@ class RecetteTypeSeeder extends Seeder {
         DB::table('users')->delete();
         DB::table('comments')->delete();
         DB::table('favorites')->delete();
-
+        DB::table('menus')->delete();
 
         $u1 = \App\User::create(array(
             'name' => 'User1',
@@ -196,6 +196,14 @@ class RecetteTypeSeeder extends Seeder {
         \App\Favorite::create(array(
             'user_id' => $u2->id,
             'recette_id' => $r3->id
+        ));
+
+        \App\Menu::create(array(
+            'menu_title' => 'Super menu',
+            'user_id' => $u1->id,
+            'entree_id' => $r1->id,
+            'plat_id' => $r2->id,
+            'dessert_id' => $r3->id,
         ));
 
     }
