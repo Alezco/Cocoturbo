@@ -16,11 +16,14 @@
                         {{ HTML::image($menu->entree->image_url, 'alt', array( 'width' => 250, 'height' => 250, 'class' => 'img-responsive img-box img-thumbnail' )) }}
                     </a>
                 </div>
-                <div class="col-xs-12 col-sm-9 col-md-9">
+                <div class="col-xs-12 col-sm-7 col-md-7">
                     <h4><a href="{{ URL::to('menus/' . $menu->id) }}">{{ $menu->menu_title }}</a></h4>
                     <p>{{ $menu->entree->recettes_name }}</p>
                     <p>{{ $menu->plat->recettes_name }}</p>
                     <p>{{ $menu->dessert->recettes_name }}</p>
+                </div>
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    @include('menus.delete')
                 </div>
             </div>
             @endforeach

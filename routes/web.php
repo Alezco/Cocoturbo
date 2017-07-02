@@ -27,12 +27,13 @@ Route::get('/recettes/create', 'RecetteController@create')->middleware('auth');
 Route::get('/recettes/edit', 'RecetteController@edit')->middleware('auth');
 
 Route::get('/favorite', 'FavoriteController@index')->middleware('auth');
-Route::post('/favorite/create', array('uses' => 'FavoriteController@store'));
-Route::delete('/favorite/delete/{id}', array('uses' => 'FavoriteController@destroy'));
+Route::post('/favorite/create', array('uses' => 'FavoriteController@store'))->middleware('auth');
+Route::delete('/favorite/delete/{id}', array('uses' => 'FavoriteController@destroy'))->middleware('auth');
 
 Route::resource('/menus', 'MenusController');
 Route::get('/menus', 'MenusController@index')->middleware('auth');
 Route::get('/menus/create', 'MenusController@create')->middleware('auth');
+Route::delete('/menus/delete/{id}', array('uses' => 'MenusController@destroy'))->middleware('auth');
 
 Route::resource('/comments', 'CommentController');
 

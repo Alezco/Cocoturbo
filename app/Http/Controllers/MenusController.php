@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Menu;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use View;
@@ -167,6 +168,12 @@ class MenusController extends Controller
      */
     public function destroy($id)
     {
+        // delete
+        $fav = Menu::find($id);
+        $fav->delete();
 
+        // redirect
+        Session::flash('message', 'Successfully deleted the menus!');
+        return Redirect::to('menus');
     }
 }
