@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Recette');
     }
+
+    public function menus()
+    {
+        return $this->hasMany('App\Recette');
+    }
 }

@@ -198,6 +198,13 @@ class RecetteTypeSeeder extends Seeder {
             'recette_id' => $r3->id
         ));
 
+        \App\Menu::create(array(
+            'user_id' => $u1->id,
+            'entree_id' => $r1->id,
+            'plat_id' => $r2->id,
+            'dessert_id' => $r3->id,
+        ));
+
     }
 
 }
