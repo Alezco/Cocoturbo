@@ -1,7 +1,7 @@
 # Cocoturbo
 PHP Project
 
-# Setup
+## Setup
 
 Clone the repository then
 ```sh
@@ -14,3 +14,9 @@ $ php artisan db:seed
 $ php artisan serve
 ```
 Enjoy on localhost:8000
+
+## Usefull information
+
+Account:
+email : user1@email.com
+password : password
