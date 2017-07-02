@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorite;
 use App\Recette;
 use App\RecetteType;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use View;
@@ -93,11 +95,20 @@ class RecetteController extends Controller {
         $recette = Recette::find($id);
         $type = RecetteType::find($recette->type_id);
         $comments = Recette::find($id)->comments()->with('user')->get();
+        $favorites = null;
+        if (Auth::Check()) {
+            $favorites = \App\Favorite::where([
+                ['user_id',Auth::user()->id],
+                ['recette_id',$id]]
+            )->get();
+        }
+        if ($favorites )
         // show the view and pass the nerd to it
         return View::make('recettes.show')
             ->with('recette', $recette)
             ->with('type', $type)
-            ->with('comments', $comments);
+            ->with('comments', $comments)
+            ->with('favorites', $favorites);
     }
 
     /**

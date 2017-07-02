@@ -7,6 +7,7 @@ use Validator;
 use View;
 use Session;
 Use Redirect;
+use Illuminate\Support\Facades\Input;
 
 class FavoriteController extends Controller
 {
@@ -41,7 +42,28 @@ class FavoriteController extends Controller
      */
     public function store()
     {
+        $rules = array(
+            'user_id'      => 'required',
+            'recette_id'     => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('recettes/'.Input::get('recette_id'))
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        } else {
+            // store
+            $favorite = new \App\Favorite();
+            $favorite->user_id = Input::get('user_id');
+            $favorite->recette_id = Input::get('recette_id');
+            $favorite->save();
+
+            // redirect
+            Session::flash('message', 'Successfully created favorite!');
+            return Redirect::to('recettes/'.Input::get('recette_id'));
+        }
     }
 
     /**
