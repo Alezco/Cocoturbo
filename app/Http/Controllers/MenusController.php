@@ -135,7 +135,12 @@ class MenusController extends Controller
      */
     public function show($id)
     {
+        $menus = \App\Menu::with(['entree','plat','dessert'])->where([
+            ['user_id',Auth::user()->id],
+            ['id',$id]])->get();
 
+            return View::make('menus.show')
+                ->with('menu', $menus);
     }
 
     /**
