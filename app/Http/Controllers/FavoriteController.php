@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use View;
 use Session;
@@ -17,7 +18,7 @@ class FavoriteController extends Controller
     public function index()
     {
         // get all the nerds
-        $favorites = \App\Favorite::with('user', 'recette')->get();
+        $favorites = \App\Favorite::where('user_id', Auth::user()->id)->get();
         // load the view and pass the nerds
         return View::make('favorites.index')
             ->with('recettes', $favorites);
