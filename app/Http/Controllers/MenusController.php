@@ -32,6 +32,7 @@ class MenusController extends Controller
      */
     public function create()
     {
+        // TODO REFACTOR
         $recettes = \App\Recette::select('type_id', 'recettes_name', 'id')->groupBy('type_id', 'recettes_name', 'id')->get();
         $array = array();
         $history = array();
@@ -72,7 +73,8 @@ class MenusController extends Controller
             'user_id'       => 'required',
             'entree'        => 'required',
             'plat'          => 'required',
-            'dessert'       => 'required'
+            'dessert'       => 'required',
+            'menu_title'    => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -83,21 +85,44 @@ class MenusController extends Controller
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {
+
+            // TODO REFACTOR
+            $recettes = \App\Recette::select('type_id', 'recettes_name', 'id')->groupBy('type_id', 'recettes_name', 'id')->get();
+            $array = array();
+            $history = array();
+            foreach ($recettes as $recette){
+                $subArray = array();
+                $type = RecetteType::find($recette->type_id);
+                if (in_array($type, $history)) {
+                    continue;
+                }
+                array_push($history, $type);
+                foreach ($recettes as $re) {
+                    if ($re->type_id == $type->id) {
+                        array_push($subArray, $re);
+                    }
+                }
+                array_push($array, $subArray);
+            }
+            $rec = $array;
+            $entree = array_pluck($rec[0], 'id');
+            $plat = array_pluck($rec[1],'id');
+            $dessert = array_pluck($rec[2],'id');
+
+
             // store
-            $recette = Recette::find($id);
-            $recette->recettes_name = Input::get('name');
-            $recette->description = Input::get('description');
-            $recette->image_url = Input::get('image');
-            $types = \App\RecetteType::all();
-            $typesIds = $types->pluck('id');
+            $menu = new \App\Menu();
+            $menu->menu_title = Input::get('menu_title');
+            $menu->user_id = Input::get('user_id');
+            $menu->entree_id = $entree[Input::get('entree')];
+            $menu->plat_id = $plat[Input::get('plat')];
+            $menu->dessert_id = $dessert[Input::get('dessert')];
 
-
-            $recette->type_id = $typesIds[Input::get('type')];
-            $recette->save();
+            $menu->save();
 
             // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('recettes');
+            Session::flash('message', 'Successfully created menu!');
+            return Redirect::to('menus');
         }
     }
 
