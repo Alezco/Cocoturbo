@@ -30,6 +30,8 @@ Route::get('/favorite', 'FavoriteController@index')->middleware('auth');
 Route::post('/favorite/create', array('uses' => 'FavoriteController@store'));
 Route::delete('/favorite/delete/{id}', array('uses' => 'FavoriteController@destroy'));
 
+Route::resource('/menus', 'MenusController');
+
 Route::resource('/comments', 'CommentController');
 
 Route::post('/comments/create', array('uses' => 'CommentController@store'));

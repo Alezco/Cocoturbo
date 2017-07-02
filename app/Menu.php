@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
+    protected $fillable = array('menu_title');
+
     public function entree(){
         return $this->hasOne('App\Recette', 'id', 'entree_id');
     }
