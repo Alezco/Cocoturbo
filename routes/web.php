@@ -21,7 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/got', 'ListController@show')->middleware('auth');
 
+
 Route::resource('/recettes', 'RecetteController');
+Route::get('/recettes/create', 'RecetteController@create')->middleware('auth');
+Route::get('/recettes/edit', 'RecetteController@create')->middleware('auth');
 
 Route::resource('/comments', 'CommentController');
 

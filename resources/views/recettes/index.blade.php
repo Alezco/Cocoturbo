@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <h1>All the recettes</h1>
+        @if( Auth::check() )
         <a class="btn btn-small btn-success" href="{{ URL::to('recettes/create') }}">Create recettes</a>
-
+        @endif
 
         <!-- will be used to show any messages -->
         @if (Session::has('message'))
