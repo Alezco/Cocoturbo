@@ -12,6 +12,7 @@
             </p>
         </div>
         <br />
+        @if( Auth::check() )
         @foreach($comments as $commente)
         <div class="row">
             <div class="col-sm-1">
@@ -29,11 +30,9 @@
                     </div><!-- /panel-body -->
                 </div><!-- /panel panel-default -->
             </div><!-- /col-sm-5 -->
+        </div>
             @endforeach
-            {{ Form::open(array('url' => 'comment')) }}
-
-
-
-            {{ Form::close() }}
+            @include('comments.create')
+            @endif
     </div>
 @endsection

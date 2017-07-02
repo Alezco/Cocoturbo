@@ -22,3 +22,5 @@ Route::get('/got', 'ListController@show')->middleware('auth');
 Route::resource('/recettes', 'RecetteController');
 
 Route::resource('/comments', 'CommentController');
+
+Route::post('comments/create', array('uses' => 'CommentController@store'));
