@@ -26,6 +26,8 @@ Route::resource('/recettes', 'RecetteController');
 Route::get('/recettes/create', 'RecetteController@create')->middleware('auth');
 Route::get('/recettes/edit', 'RecetteController@create')->middleware('auth');
 
+Route::get('/favorite', 'FavoriteController@index')->middleware('auth');
+
 Route::resource('/comments', 'CommentController');
 
 Route::post('comments/create', array('uses' => 'CommentController@store'));
