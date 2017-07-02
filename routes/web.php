@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'ListController@show');
+Route::get('/', function () {
+    return redirect('/recettes');
+});
 
 Auth::routes();
 
