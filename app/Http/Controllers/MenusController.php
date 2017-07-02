@@ -19,7 +19,7 @@ class MenusController extends Controller
      */
     public function index()
     {
-        $menus = \App\Menu::with(['entree','plat','dessert'])->get();
+        $menus = \App\Menu::with(['entree','plat','dessert'])->where('user_id', Auth::user()->id)->get();
         // load the view and pass the nerds
         return View::make('menus.index')
             ->with('menus', $menus);
