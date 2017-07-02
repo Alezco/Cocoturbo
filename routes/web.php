@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', 'ListController@show');
+Route::get('/', function () {
+    return redirect('/recettes');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/got', 'ListController@show')->middleware('auth');
+
+Route::resource('/recettes', 'RecetteController');
+
+Route::resource('/comments', 'CommentController');
+
+Route::post('comments/create', array('uses' => 'CommentController@store'));
