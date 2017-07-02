@@ -21,13 +21,16 @@ class DatabaseSeeder extends Seeder
 
 class RecetteTypeSeeder extends Seeder {
 
-    public function run() {
+    public function run()
+    {
 
         // clear our database ------------------------------------------
         DB::table('recette_types')->delete();
         DB::table('recettes')->delete();
         DB::table('users')->delete();
         DB::table('comments')->delete();
+        DB::table('favorites')->delete();
+
 
         $u1 = \App\User::create(array(
             'name' => 'User1',
@@ -45,15 +48,15 @@ class RecetteTypeSeeder extends Seeder {
 
         // bear 1 is named Lawly. She is extremely dangerous. Especially when hungry.
         $entree = \App\RecetteType::create(array(
-            'type_name'         => 'entrée'
+            'type_name' => 'entrée'
         ));
 
         $plat = \App\RecetteType::create(array(
-            'type_name'         => 'Plat principal'
+            'type_name' => 'Plat principal'
         ));
 
         $dessert = \App\RecetteType::create(array(
-            'type_name'         => 'Dessert'
+            'type_name' => 'Dessert'
         ));
 
         $this->command->info('Type de recette initialisé');
@@ -63,7 +66,7 @@ class RecetteTypeSeeder extends Seeder {
         // we will use the variables we used to create the bears to get their id
 
         $r1 = \App\Recette::create(array(
-            'recettes_name'  => "Cake au légume",
+            'recettes_name' => "Cake au légume",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -74,8 +77,8 @@ class RecetteTypeSeeder extends Seeder {
             'image_url' => "http://img.cac.pmdstatic.net/fit/http.3A.2F.2Fwww.2Ecuisineactuelle.2Efr.2Fvar.2Fcui.2Fstorage.2Fimages.2Frecettes-de-cuisine.2Ftype-de-plat.2Fentree.2Fcake-aux-legumes-prisma_recipe-267589.2F2186154-1-fre-FR.2Fcake-aux-legumes.2Ejpg/748x372/crop-from/center/cake-aux-legumes.jpeg",
             'type_id' => $entree->id
         ));
-        \App\Recette::create(array(
-            'recettes_name'  => "Taboulé libanais",
+        $r2= \App\Recette::create(array(
+            'recettes_name' => "Taboulé libanais",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -86,8 +89,8 @@ class RecetteTypeSeeder extends Seeder {
             'image_url' => "http://blog.carredeboeuf.com/wp-content/uploads/2015/04/taboul%C3%A9-persil-image.jpg",
             'type_id' => $entree->id
         ));
-        \App\Recette::create(array(
-            'recettes_name'  => "Tarte courgette",
+        $r3 = \App\Recette::create(array(
+            'recettes_name' => "Tarte courgette",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -100,7 +103,7 @@ class RecetteTypeSeeder extends Seeder {
         ));
         $this->command->info('Entree initialisé');
         \App\Recette::create(array(
-            'recettes_name'  => "Potatoes maison",
+            'recettes_name' => "Potatoes maison",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -112,7 +115,7 @@ class RecetteTypeSeeder extends Seeder {
             'type_id' => $plat->id
         ));
         \App\Recette::create(array(
-            'recettes_name'  => "Chapon farcis au boudin blanc",
+            'recettes_name' => "Chapon farcis au boudin blanc",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -124,7 +127,7 @@ class RecetteTypeSeeder extends Seeder {
             'type_id' => $plat->id
         ));
         \App\Recette::create(array(
-            'recettes_name'  => "Nouille chinoise",
+            'recettes_name' => "Nouille chinoise",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -137,7 +140,7 @@ class RecetteTypeSeeder extends Seeder {
         ));
         $this->command->info('Plat initialisé');
         \App\Recette::create(array(
-            'recettes_name'  => "Tiramitsu",
+            'recettes_name' => "Tiramitsu",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -149,7 +152,7 @@ class RecetteTypeSeeder extends Seeder {
             'type_id' => $dessert->id
         ));
         \App\Recette::create(array(
-            'recettes_name'  => "Fraise et glace vanille",
+            'recettes_name' => "Fraise et glace vanille",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -161,7 +164,7 @@ class RecetteTypeSeeder extends Seeder {
             'type_id' => $dessert->id
         ));
         \App\Recette::create(array(
-            'recettes_name'  => "Mille feuille au chocolat",
+            'recettes_name' => "Mille feuille au chocolat",
             'description' => "1. 3 bouquets de persil plat.
                               2. 1 bouquet de menthe fraîche.
                               3. 2 oignons nouveaux.
@@ -179,6 +182,22 @@ class RecetteTypeSeeder extends Seeder {
             'user_id' => $u1->id,
             'recette_id' => $r1->id
         ));
+
+        \App\Favorite::create(array(
+            'user_id' => $u1->id,
+            'recette_id' => $r2->id
+        ));
+
+        \App\Favorite::create(array(
+            'user_id' => $u1->id,
+            'recette_id' => $r1->id
+        ));
+
+        \App\Favorite::create(array(
+            'user_id' => $u2->id,
+            'recette_id' => $r3->id
+        ));
+
     }
 
 }
