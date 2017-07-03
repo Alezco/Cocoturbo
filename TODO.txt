@@ -1,0 +1,18 @@
+/******** TODO ********/
+
+Priorités :
+- Faire des tests...
+- Ubuntu server
+
+Améliroations :
+- size les images des recettes
+- choisir une seule langue et l'appliquer à tous le site
+- pouvoir avoir une image si aucune image uploader (image par défaut)
+- texte si aucune de recette trouvées (recherche sans résultat)
+- avoir accès aux recettes crées ? (ce sont automatiquement des recette appartenant à l'utilisateur... Possibilité d'éediter ?)
+- Faire en sorte que les internautes puissent "noter" les recettes ?
+- bonus : recherche avancée grace a des options (par type de plat, ingrédient, popularité, difficulté)
+- ajouter dans la BDD le degré de difficulté de la recette (sur 4)
+- ajouter dans la BDD le cout (sur 4)
+- ajouter l'auteur d'une recette sur la fiche de la recette
+- les commentaires peuvent être visibles par les visiteurs
