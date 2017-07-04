@@ -18,7 +18,7 @@
             @if (count($favorites) == 0)
                 @include('favorites.create')
             @else
-                <p>Cette rectette est deja dans vos favoris</p>
+                <p>Cette recette est deja dans vos favoris</p>
             @endif
             @foreach($comments as $commente)
                 <div class="row">
@@ -34,9 +34,9 @@
                             </div>
                             <div class="panel-body">
                                 {{$commente->comment_content}}
-                            </div><!-- /panel-body -->
-                        </div><!-- /panel panel-default -->
-                    </div><!-- /col-sm-5 -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endforeach
             @include('comments.create')

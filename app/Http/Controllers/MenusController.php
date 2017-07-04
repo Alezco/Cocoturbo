@@ -69,7 +69,6 @@ class MenusController extends Controller
      */
     public function store()
     {
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'user_id'       => 'required',
             'entree'        => 'required',
@@ -79,8 +78,6 @@ class MenusController extends Controller
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
-        // process the login
         if ($validator->fails()) {
             return Redirect::to('menus/create')
                 ->withErrors($validator)

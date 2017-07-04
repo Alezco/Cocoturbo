@@ -1,3 +1,5 @@
+{{ HTML::ul($errors->all()) }}
+
 {{ Form::open(array('url' => 'comments/create')) }}
 
 <div class="form-group">
