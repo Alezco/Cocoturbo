@@ -93,15 +93,20 @@ class RecetteController extends Controller {
      */
     public function show($id)
     {
-        // get the nerd
+        try {
+            Recette::find($id);
+        }
+        catch(\Exception $e){
+            return View::make('errors.404');
+        }
         $recette = Recette::find($id);
         $type = RecetteType::find($recette->type_id);
         $comments = Recette::find($id)->comments()->with('user')->get();
         $favorites = null;
         if (Auth::Check()) {
             $favorites = \App\Favorite::where([
-                ['user_id',Auth::user()->id],
-                ['recette_id',$id]]
+                    ['user_id',Auth::user()->id],
+                    ['recette_id',$id]]
             )->get();
         }
         if ($favorites)
