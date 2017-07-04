@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recette extends Model
 {
-    protected $fillable = array('recettes_name', 'description', 'image_url', 'created_at', 'updated_at');
+    protected $fillable = array('recettes_name', 'type_id', 'description', 'image_url', 'created_at', 'updated_at');
 
     public function type(){
         return $this->hasOne('App\RecetteType', 'id', 'type_id');

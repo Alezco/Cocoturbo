@@ -44,9 +44,7 @@ class RecetteTypeSeeder extends Seeder {
             'password' => bcrypt('password'),
         ));
 
-        // we'll create three different bears
 
-        // bear 1 is named Lawly. She is extremely dangerous. Especially when hungry.
         $entree = \App\RecetteType::create(array(
             'type_name' => 'entrée'
         ));
