@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get -y install apache2
 
 RUN apt-get -y install libapache2-mod-php7.0 php7.0 php7.0-cli php-xdebug php7.0-mbstring sqlite3 php7.0-mysql \
-    php-imagick php-memcached php-pear curl imagemagick php7.0-dev php7.0-phpdbg php7.0-gd \
+    php-imagick php-memcached php-pear curl imagemagick php7.0-dev php7.0-phpdbg php7.0-gd php7.0-zip php7.0-curl \
     npm nodejs php7.0-json php7.0-curl php7.0-sqlite3 php7.0-intl apache2 wget libsasl2-dev libssl-dev \
     libsslcommon2-dev libcurl4-openssl-dev openssl libssl-dev libcurl4-openssl-dev pkg-config libsasl2-dev libpcre3-dev \
   && a2enmod headers \
@@ -32,6 +32,11 @@ EXPOSE 80
 ENTRYPOINT [ "/usr/sbin/apache2" ]
 
 RUN npm install
-#RUN composer install
+RUN /usr/local/bin/composer.phar install
+FROM mysql:latest
+RUN service mysql start
+RUN mysql -u root "CREATE DATABASE IF NOT EXISTS cocoturbo;"
+RUN php artisan migrate
+RUN php artisan db:seed
 
 CMD ["-D", "FOREGROUND"]
