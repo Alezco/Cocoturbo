@@ -14,7 +14,7 @@ class AddDescriptionToRecettes extends Migration
     public function up()
     {
         Schema::table('recettes', function($table) {
-            $table->string('description');
+            $table->text('description');
         });
     }
 

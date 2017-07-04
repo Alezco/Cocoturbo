@@ -14,7 +14,7 @@ class AddImageToRecettes extends Migration
     public function up()
     {
         Schema::table('recettes', function($table) {
-            $table->string('image_url');
+            $table->text('image_url');
         });
     }
 

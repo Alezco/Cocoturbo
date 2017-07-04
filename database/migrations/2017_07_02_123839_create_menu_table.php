@@ -15,10 +15,10 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('entree_id');
-            $table->integer('plat_id');
-            $table->integer('dessert_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('entree_id')->unsigned();
+            $table->integer('plat_id')->unsigned();
+            $table->integer('dessert_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('entree_id')->references('id')->on('recettes');
