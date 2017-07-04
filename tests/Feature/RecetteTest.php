@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class RecetteTest extends TestCase
 {
     protected $baseUrl = 'http://localhost:8000';
+
     /**
      * A basic test example.
      *
