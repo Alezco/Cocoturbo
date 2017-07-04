@@ -24,3 +24,15 @@ password : password
 Config of .env file for production: \
 APP_ENV=production \
 APP_DEBUG=false
+
+## Dusk tests
+
+```sh
+$ php artisan dusk
+```
+
+## Unit tests
+
+```sh
+$ ./vendor/bin/phpunit
+```
