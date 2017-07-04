@@ -104,13 +104,21 @@ class RecetteController extends Controller {
                 ['recette_id',$id]]
             )->get();
         }
-        if ($favorites )
-        // show the view and pass the nerd to it
-        return View::make('recettes.show')
-            ->with('recette', $recette)
-            ->with('type', $type)
-            ->with('comments', $comments)
-            ->with('favorites', $favorites);
+        if ($favorites)
+            // show the view and pass the nerd to it
+            return View::make('recettes.show')
+                ->with('recette', $recette)
+                ->with('type', $type)
+                ->with('comments', $comments)
+                ->with('favorites', $favorites);
+        else {
+            // show the view and pass the nerd to it
+            return View::make('recettes.show')
+                ->with('recette', $recette)
+                ->with('type', $type)
+                ->with('comments', $comments)
+                ->with('favorites', $favorites);
+        }
     }
 
     /**
@@ -162,8 +170,6 @@ class RecetteController extends Controller {
             $recette->image_url = Input::get('image');
             $types = \App\RecetteType::all();
             $typesIds = $types->pluck('id');
-
-
             $recette->type_id = $typesIds[Input::get('type')];
             $recette->save();
 
