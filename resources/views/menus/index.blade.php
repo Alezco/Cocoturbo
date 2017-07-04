@@ -2,9 +2,9 @@
 {{ HTML::style('css/recettes_list.css') }}
 @section('content')
     <div class="container">
-        <h1>All the recettes</h1>
-        <a class="btn btn-small btn-success" href="{{ URL::to('menus/create') }}">Create Menu</a>
-
+        <h1>Toutes les recettes</h1>
+        <a class="btn btn-small btn-success" href="{{ URL::to('menus/create') }}">Créer un menu</a>
+        <br /><br />
     <!-- will be used to show any messages -->
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>

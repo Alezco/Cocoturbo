@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Create a Menu</h1>
+        <h1>Créer un Menu</h1>
         <!-- if there are creation errors, they will show here -->
         {{ HTML::ul($errors->all()) }}
 
@@ -13,7 +13,7 @@
             {{ Form::text('menu_title', Input::old('menu_title'), array('class' => 'form-control')) }}
         </div>
         <div class="form-group">
-            {{ Form::label('entree', 'Entree') }}
+            {{ Form::label('entree', 'Entrée') }}
             {{ Form::select('entree', $entrees) }}
         </div>
         <div class="form-group">
@@ -25,7 +25,7 @@
             {{ Form::select('dessert', $desserts) }}
         </div>
 
-        {{ Form::submit('Creer la menu!', array('class' => 'btn btn-primary')) }}
+        {{ Form::submit('Créer le menu !', array('class' => 'btn btn-primary')) }}
 
         {{ Form::close() }}
 

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h1>Showing <strong>{{ $menu[0]->menu_title }}</strong></h1>
+        <h1><strong>{{ $menu[0]->menu_title }}</strong></h1>
     </div>
     <div id="exTab1" class="container">
         <ul  class="nav nav-pills">
-            <li class="active"><a  href="#1a" data-toggle="tab">Entree</a></li>
+            <li class="active"><a  href="#1a" data-toggle="tab">Entrée</a></li>
             <li><a href="#2a" data-toggle="tab">Plat</a></li>
             <li><a href="#3a" data-toggle="tab">Dessert</a></li>
         </ul>

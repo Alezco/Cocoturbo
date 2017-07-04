@@ -1,1 +1,1 @@
-lool something went wrong
+500 - Something went wrong
