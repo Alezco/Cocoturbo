@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 use Validator;
 use View;
 use Session;
@@ -33,11 +34,18 @@ class MenusController extends Controller
      */
     public function create()
     {
-        // TODO REFACTOR
+        try {
+            // TODO REFACTOR
+            \App\Recette::select('type_id', 'recettes_name', 'id')->groupBy('type_id', 'recettes_name', 'id')->get();
+
+        } catch (\Exception $e) {
+            return View::make("errors.404");
+        }
+
         $recettes = \App\Recette::select('type_id', 'recettes_name', 'id')->groupBy('type_id', 'recettes_name', 'id')->get();
         $array = array();
         $history = array();
-        foreach ($recettes as $recette){
+        foreach ($recettes as $recette) {
             $subArray = array();
             $type = RecetteType::find($recette->type_id);
             if (in_array($type, $history)) {
@@ -53,13 +61,14 @@ class MenusController extends Controller
         }
         $rec = $array;
         $entree = array_pluck($rec[0], 'recettes_name');
-        $plat = array_pluck($rec[1],'recettes_name');
-        $dessert = array_pluck($rec[2],'recettes_name');
+        $plat = array_pluck($rec[1], 'recettes_name');
+        $dessert = array_pluck($rec[2], 'recettes_name');
         return View::make('menus.create')
             ->with('recettes', $rec)
             ->with('entrees', $entree)
             ->with('plats', $plat)
             ->with('desserts', $dessert);
+
     }
 
     /**
@@ -142,7 +151,6 @@ class MenusController extends Controller
             $menus = \App\Menu::with(['entree', 'plat', 'dessert'])->where([
                 ['user_id', Auth::user()->id],
                 ['id', $id]])->get();
-
         return View::make('menus.show')
             ->with('menu', $menus);
     }
