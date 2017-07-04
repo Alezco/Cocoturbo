@@ -52,7 +52,7 @@ class RecetteController extends Controller {
     public function store()
     {
         $rules = array(
-            'name'       => 'required',
+            'name'       => 'required|max:191',
             'type'      => 'required',
             'image'     => 'nullable'
         );

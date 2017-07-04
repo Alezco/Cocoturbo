@@ -74,7 +74,7 @@ class MenusController extends Controller
             'entree'        => 'required',
             'plat'          => 'required',
             'dessert'       => 'required',
-            'menu_title'    => 'required'
+            'menu_title'    => 'required|max:191'
         );
         $validator = Validator::make(Input::all(), $rules);
 
