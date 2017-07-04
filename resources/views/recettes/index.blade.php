@@ -13,6 +13,9 @@
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
+        @if( count($recettes) == 0 )
+            Aucun resultat ne correspond a votre recherche.
+        @endif
         @foreach($recettes as $key => $value)
             <div class="row">
                 <div class="col-xs-12 col-sm-3 col-md-3">
