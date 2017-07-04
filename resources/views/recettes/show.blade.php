@@ -8,7 +8,9 @@
             <p>
                 <strong>Type de plat :</strong> {{ $type->type_name }} <br />
                 <strong>Description :</strong> <br /> {!! nl2br(e($recette->description)) !!}
-                {{ HTML::image($recette->image_url) }}
+                @if ($recette->image_url != "")
+                    {{ HTML::image($recette->image_url, 'alt', array( 'class' => 'img-responsive' )) }}
+                @endif
             </p>
         </div>
         <br />

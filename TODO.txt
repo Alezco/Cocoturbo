@@ -3,8 +3,9 @@
 Priorites :
 - Faire des tests...
 - Ubuntu server
+- Les visiteurs peuvent voir le détail d'une recette
 
-Ameliroations :
+Ameliorations :
 - size les images des recettes
 - texte si aucune de recette trouvees (recherche sans resultat)
 - avoir acces aux recettes crees ? (ce sont automatiquement des recettes appartenant a l'utilisateur... Possibilite d'editer ?)
@@ -15,3 +16,4 @@ Ameliroations :
 - ajouter l'auteur d'une recette sur la fiche de la recette
 - les commentaires peuvent etre visibles par les visiteurs
 - rediriger les visiteurs vers le login au detail d'une recette
+- Ameliorer le design de la page 404
