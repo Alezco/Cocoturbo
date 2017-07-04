@@ -6,7 +6,6 @@ Priorites :
 
 Ameliroations :
 - size les images des recettes
-- pouvoir avoir une image si aucune image uploader (image par defaut)
 - texte si aucune de recette trouvees (recherche sans resultat)
 - avoir acces aux recettes crees ? (ce sont automatiquement des recettes appartenant a l'utilisateur... Possibilite d'editer ?)
 - Faire en sorte que les internautes puissent "noter" les recettes ?
