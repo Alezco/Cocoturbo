@@ -36,12 +36,10 @@ $factory->define(App\Recette::class, function(Faker\Generator $faker) {
 
 $factory->define(App\Menu::class, function(Faker\Generator $faker) {
    return [
-      'user_id' => 6,
+      'user_id' => 5,
        'entree_id' => 15,
        'plat_id' => 16,
        'dessert_id' => 17,
-       'updated_at' => $faker->date('y-m-d', 'now'),
-       'created_at' => $faker->date('y-m-d', 'updated_at'),
        'menu_title' => str_random()
    ] ;
 });
