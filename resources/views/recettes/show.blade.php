@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Showing {{ $recette->recettes_name }}</h1>
+        <h1>{{ $recette->recettes_name }}</h1>
         <div class="jumbotron text-center">
             <h2>{{ $recette->recettes_name }}</h2>
             <p>
