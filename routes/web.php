@@ -32,11 +32,11 @@ Route::get('/favorite', 'FavoriteController@index')->middleware('auth');
 Route::post('/favorite/create', array('uses' => 'FavoriteController@store'));
 Route::delete('/favorite/delete/{id}', array('uses' => 'FavoriteController@destroy'))->middleware('auth');
 
-Route::resource('/menu', 'MenusController');
-Route::get('/menu', 'MenusController@index')->middleware('auth');
-Route::get('/menu/{id}', array('middleware' => 'auth', 'uses' => 'MenusController@show'));
-Route::get('/menu/create', 'MenusController@create')->middleware('auth');
-Route::delete('/menu/delete/{id}', array('middleware' => 'auth', 'uses' => 'MenusController@destroy'))->middleware('auth');
+Route::resource('/menus', 'MenusController');
+Route::get('/menus', 'MenusController@index')->middleware('auth');
+Route::get('/menus/{id}', array('middleware' => 'auth', 'uses' => 'MenusController@show'));
+Route::get('/menus/create', 'MenusController@create')->middleware('auth');
+Route::delete('/menus/delete/{id}', array('middleware' => 'auth', 'uses' => 'MenusController@destroy'))->middleware('auth');
 
 Route::resource('/comments', 'CommentController');
 
