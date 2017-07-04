@@ -72,4 +72,40 @@ class createRecetteTest extends TestCase
             'recettes_name' => 'Cake de test avec url'
         ]);
     }
+
+    public function testRecetteDeplicataTitle()
+    {
+        $u1 = \App\User::create(array(
+            'name' => 'testRecetteAvecUrl',
+            'email' => 'testRecetteAvecUrl@coco.fr',
+            'password' => bcrypt('password'),
+        ));
+
+        $entree = \App\RecetteType::create(array(
+            'type_name' => 'entrée'
+        ));
+
+        $r1 = \App\Recette::create(array(
+            'recettes_name' => "Cake du duplicata",
+            'description' => "1. 3 bouquets de persil plat.
+                              2. 1 bouque 3 citrons jaunes.
+                              7. huile d'olive vierge extra et sel.",
+            'image_url' => "http://ww/2012/06/fotolia_244565422.jpg",
+            'type_id' => $entree->id,
+        ));
+
+        try {
+            $r2 = \App\Recette::create(array(
+                'recettes_name' => "Cake du duplicata",
+                'description' => "1. 3 bouquunes.
+                              7. huile d'olive vierge extra et sel.",
+                'image_url' => "http://www.atelient/uploads/2012/06/fotolia_244565422.jpg",
+                'type_id' => $entree->id,
+            ));
+        } catch(\Illuminate\Database\QueryException $ex){
+                $this->assertContains('Cake du duplicata', $ex->getMessage());
+                return;
+        }
+        $this->assertFalse(true);
+    }
 }
