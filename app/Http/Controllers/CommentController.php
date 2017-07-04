@@ -59,7 +59,7 @@ class CommentController extends Controller
             $comment->save();
 
             // redirect
-            Session::flash('message', 'Successfully created comments!');
+            Session::flash('message', 'Commentaire posté avec succès !');
             return Redirect::to('recettes/'.Input::get('recette_id'));
         }
     }

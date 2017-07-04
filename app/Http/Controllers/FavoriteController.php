@@ -62,7 +62,7 @@ class FavoriteController extends Controller
             $favorite->save();
 
             // redirect
-            Session::flash('message', 'Successfully created favorite!');
+            Session::flash('message', 'Favori créé avec succès !');
             return Redirect::to('recettes/'.Input::get('recette_id'));
         }
     }
@@ -113,7 +113,7 @@ class FavoriteController extends Controller
         $fav->delete();
 
         // redirect
-        Session::flash('message', 'Successfully deleted the favorite!');
+        Session::flash('message', 'Favori supprimé avec succès');
         return Redirect::to('favorite');
     }
 }

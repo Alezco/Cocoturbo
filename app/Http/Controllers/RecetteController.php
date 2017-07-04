@@ -65,7 +65,7 @@ class RecetteController extends Controller {
                 ->withInput(Input::all());
         } else if (Recette::where('recettes_name', '=', Input::get('name'))->count() > 0) {
             return Redirect::to('recettes/create')
-                ->withErrors('Une recette avec ce nom existe deja')
+                ->withErrors('Une recette avec ce nom existe déjà')
                 ->withInput(Input::except('name'));
         } else {
             // store
@@ -80,7 +80,7 @@ class RecetteController extends Controller {
             $recette->save();
 
             // redirect
-            Session::flash('message', 'Successfully created nerd!');
+            Session::flash('message', 'Recette créée avec succès !');
             return Redirect::to('recettes');
         }
     }
@@ -168,7 +168,7 @@ class RecetteController extends Controller {
             $recette->save();
 
             // redirect
-            Session::flash('message', 'Successfully created nerd!');
+            Session::flash('message', 'Recette créée avec succès !');
             return Redirect::to('recettes');
         }
     }

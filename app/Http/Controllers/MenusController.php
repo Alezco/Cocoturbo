@@ -122,7 +122,7 @@ class MenusController extends Controller
             $menu->save();
 
             // redirect
-            Session::flash('message', 'Successfully created menu!');
+            Session::flash('message', 'Menu créé avec succès !');
             return Redirect::to('menus');
         }
     }
@@ -178,7 +178,7 @@ class MenusController extends Controller
         $fav->delete();
 
         // redirect
-        Session::flash('message', 'Successfully deleted the menus!');
+        Session::flash('message', 'Menu supprimé avec succès !');
         return Redirect::to('menus');
     }
 }
