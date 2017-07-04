@@ -15,9 +15,11 @@ Route::get('/', function () {
     return redirect('/recettes');
 });
 
-Auth::routes();
+Route::get('home', function () {
+    return redirect('/recettes');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
 Route::get('/got', 'ListController@show')->middleware('auth');
 
