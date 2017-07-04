@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\RecetteController;
 use App\Recette;
 use Illuminate\Support\Facades\App;
 use Tests\TestCase;
@@ -27,10 +28,5 @@ class RecetteTest extends TestCase
 
     public function testRecette()
     {
-        $recette = factory(Recette::class)->create([
-            'recettes_name' => 'Sorbet a la fraise'
-        ]);
-
-
     }
 }

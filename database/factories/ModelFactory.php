@@ -29,6 +29,19 @@ $factory->define(App\Recette::class, function(Faker\Generator $faker) {
        'description' => $faker->text(),
        'type_id' => 1,
        'created_at' => $faker->date(),
-       'updated_at' => $faker->date()
+       'updated_at' => $faker->date(),
+       'image_url' => ""
    ];
+});
+
+$factory->define(App\Menu::class, function(Faker\Generator $faker) {
+   return [
+      'user_id' => 6,
+       'entree_id' => 15,
+       'plat_id' => 16,
+       'dessert_id' => 17,
+       'updated_at' => $faker->date('y-m-d', 'now'),
+       'created_at' => $faker->date('y-m-d', 'updated_at'),
+       'menu_title' => str_random()
+   ] ;
 });
