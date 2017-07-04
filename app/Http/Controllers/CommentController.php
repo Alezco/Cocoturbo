@@ -39,7 +39,7 @@ class CommentController extends Controller
     public function store()
     {
         $rules = array(
-            'content'       => 'required',
+            'content'       => 'required|max:191',
             'user_id'      => 'required',
             'recette_id'     => 'required'
         );

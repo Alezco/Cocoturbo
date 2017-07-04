@@ -69,18 +69,15 @@ class MenusController extends Controller
      */
     public function store()
     {
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'user_id'       => 'required',
             'entree'        => 'required',
             'plat'          => 'required',
             'dessert'       => 'required',
-            'menu_title'    => 'required'
+            'menu_title'    => 'required|max:191'
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
-        // process the login
         if ($validator->fails()) {
             return Redirect::to('menus/create')
                 ->withErrors($validator)
