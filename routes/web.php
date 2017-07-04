@@ -21,9 +21,6 @@ Route::get('home', function () {
 
 Auth::routes();
 
-Route::get('/got', 'ListController@show')->middleware('auth');
-
-
 Route::resource('/recettes', 'RecetteController');
 Route::get('/recettes/create', 'RecetteController@create')->middleware('auth');
 Route::get('/recettes/edit', 'RecetteController@edit')->middleware('auth');
@@ -34,10 +31,8 @@ Route::delete('/favorite/delete/{id}', array('uses' => 'FavoriteController@destr
 
 Route::resource('/menus', 'MenusController');
 Route::get('/menus', 'MenusController@index')->middleware('auth');
-Route::get('/menus/{id}', array('middleware' => 'auth', 'uses' => 'MenusController@show'));
 Route::get('/menus/create', 'MenusController@create')->middleware('auth');
 Route::delete('/menus/delete/{id}', array('middleware' => 'auth', 'uses' => 'MenusController@destroy'))->middleware('auth');
 
 Route::resource('/comments', 'CommentController');
-
 Route::post('/comments/create', array('uses' => 'CommentController@store'));

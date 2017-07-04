@@ -52,7 +52,7 @@ class RecetteController extends Controller {
     public function store()
     {
         $rules = array(
-            'name'       => 'required|max:191',
+            'name'       => 'required|max:191|unique:recettes',
             'type'      => 'required',
             'image'     => 'nullable'
         );
@@ -155,7 +155,7 @@ class RecetteController extends Controller {
         /// validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'name'       => 'required',
+            'name'       => 'required|max:191|unique:recettes',
             'type'      => 'required',
             'image'     => 'nullable'
         );
