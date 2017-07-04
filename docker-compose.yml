@@ -1,19 +1,9 @@
 version: '2'
 
 services:
-  web:
-    build:
-      context: ./
-      dockerfile: web.docker
-    volumes:
-      - ./:/var/www
+  webserver:
+    image: 'bitnami/apache:latest'
     ports:
-      - "8080:80"
-    links:
-      - app
-  app:
-    build:
-      context: ./
-      dockerfile: app.docker
+      - '80:80'
     volumes:
-      - ./:/var/www
+      - ./htdocs:/app
