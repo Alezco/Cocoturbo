@@ -74,7 +74,7 @@ class MenusController extends Controller
             'entree'        => 'required',
             'plat'          => 'required',
             'dessert'       => 'required',
-            'menu_title'    => 'required|max:191'
+            'menu_title'    => 'required|max:191|unique:menus'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -133,15 +133,17 @@ class MenusController extends Controller
     public function show($id)
     {
         try {
-            \App\Menu::where(['id', $id])->get();
+            $tmp = Menu::find($id);
+            if ($tmp == null) {
+                return View::make('errors.404');
+            }
         }
         catch(\Exception $e){
             return View::make('errors.404');
         }
-
-            $menus = \App\Menu::with(['entree', 'plat', 'dessert'])->where([
-                ['user_id', Auth::user()->id],
-                ['id', $id]])->get();
+        $menus = Menu::with(['entree', 'plat', 'dessert'])->where([
+            ['user_id', Auth::user()->id],
+            ['id', $id]])->get();
 
         return View::make('menus.show')
             ->with('menu', $menus);
