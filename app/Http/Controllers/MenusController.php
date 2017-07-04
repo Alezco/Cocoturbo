@@ -141,12 +141,12 @@ class MenusController extends Controller
      */
     public function show($id)
     {
-        try {
+        /*try {
             \App\Menu::where(['id', $id])->get();
         }
         catch(\Exception $e){
             return View::make('errors.404');
-        }
+        }*/
 
             $menus = \App\Menu::with(['entree', 'plat', 'dessert'])->where([
                 ['user_id', Auth::user()->id],
