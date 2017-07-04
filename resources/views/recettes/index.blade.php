@@ -2,7 +2,7 @@
 {{ HTML::style('css/recettes_list.css') }}
 @section('content')
     <div class="container">
-        <h1>All the recettes</h1>
+        <h1>Toutes les recettes</h1>
         @include('recettes.search')
         @if( Auth::check() )
         <a class="btn btn-small btn-success" href="{{ URL::to('recettes/create') }}">Create recettes</a>
