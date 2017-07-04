@@ -2,8 +2,8 @@ version: '2'
 
 services:
   webserver:
-    image: 'bitnami/apache:latest'
+    build: .
     ports:
       - '80:80'
     volumes:
-      - ./htdocs:/app
+      - ./htdocs:/var/www/html
