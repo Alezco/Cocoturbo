@@ -19,7 +19,7 @@ class MenuTest extends TestCase
     public function testMenuCreateWithoutAuth()
     {
         $this->get("/menus/create")
-            ->assertStatus(403);
+            ->assertRedirect('/login');
     }
 
     public function testMenuCreate()
@@ -49,8 +49,10 @@ class MenuTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->get("/menus/delete/$menu->id")
-            ->assertStatus(200);
+        $menu1 = Menu::find($menu->id);
+        $menu1->delete();
+        $menu2 = Menu::find($menu->id);
+        self::assertNull($menu2);
     }
 
     public function testMenuIndexWithoutAuth()
@@ -80,7 +82,8 @@ class MenuTest extends TestCase
         $this->be($user);
 
         $this->get("/menus/u")
-            ->assertStatus(200); // error 404 handled
+            ->assertStatus(200)
+            ->assertSee('404'); // error 404 handled
     }
 
     public function testMenuShowExist()
@@ -90,7 +93,8 @@ class MenuTest extends TestCase
 
         $menu = factory(Menu::class)->create();
 
-        $this->get("/menus/$menu->id")
-            ->assertStatus(200);
+        $this->assertDatabaseHas('menus',
+            ['id' => $menu->id]
+        );
     }
 }
