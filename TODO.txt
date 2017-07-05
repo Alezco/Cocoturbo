@@ -1,19 +1,10 @@
-/******** TODO ********/
-
-Priorites :
-- Faire des tests...
-- Ubuntu server
-- Les visiteurs peuvent voir le détail d'une recette
-
-Ameliorations :
-- size les images des recettes
-- texte si aucune de recette trouvees (recherche sans resultat)
-- avoir acces aux recettes crees ? (ce sont automatiquement des recettes appartenant a l'utilisateur... Possibilite d'editer ?)
-- Faire en sorte que les internautes puissent "noter" les recettes ?
+- Avoir acces aux recettes crees ? (ce sont automatiquement des recettes appartenant a l'utilisateur... Possibilite d'editer ?)
+- Faire en sorte que les internautes puissent "noter" les recettes
+- Textarea création de recettes
 - BONUS : recherche avancee grace a des options (par type de plat, ingredient, popularite, difficulte)
-- ajouter dans la BDD le degre de difficulte de la recette (sur 4)
-- ajouter dans la BDD le cout (sur 4)
-- ajouter l'auteur d'une recette sur la fiche de la recette
-- les commentaires peuvent etre visibles par les visiteurs
-- rediriger les visiteurs vers le login au detail d'une recette
+- Ajouter dans la BDD le degre de difficulte de la recette (sur 4)
+- Ajouter dans la BDD le cout (sur 4)
+- Ajouter l'auteur d'une recette sur la fiche de la recette
+- Les commentaires peuvent etre visibles par les visiteurs
 - Ameliorer le design de la page 404
+- Refaire page détails
