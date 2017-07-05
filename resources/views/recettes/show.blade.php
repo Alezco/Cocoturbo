@@ -30,10 +30,21 @@
                     <div class="col-sm-5">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <strong>{{$commente->user->name}}</strong> <span class="text-muted">{{$commente->updated_at}}</span>
+                                <strong>{{$commente->user->name}}</strong>
+                                <span class="pull-right star">
+                                  @for ($i = 0; $i < $commente->rating; $i++)
+                                    &#9733;
+                                  @endfor
+                                  @for ($i = $commente->rating; $i < 5; $i++)
+                                    &#9734;
+                                  @endfor
+                                </span>
                             </div>
                             <div class="panel-body">
                                 {{$commente->comment_content}}
+                            </div>
+                            <div class="panel-footer">
+                              <span class="text-muted">{{$commente->updated_at}}</span>
                             </div>
                         </div>
                     </div>

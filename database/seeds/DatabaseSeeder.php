@@ -178,7 +178,8 @@ class RecetteTypeSeeder extends Seeder {
         \App\Comment::create(array(
             'comment_content' => "j'ai faim",
             'user_id' => $u1->id,
-            'recette_id' => $r1->id
+            'recette_id' => $r1->id,
+            'rating' => 5,
         ));
 
         \App\Favorite::create(array(

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use View;
 use Session;
 Use Redirect;
+use Log;
 
 class CommentController extends Controller
 {
@@ -41,7 +42,8 @@ class CommentController extends Controller
         $rules = array(
             'content'       => 'required|max:191',
             'user_id'      => 'required',
-            'recette_id'     => 'required'
+            'recette_id'     => 'required',
+            'rating'        => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -56,6 +58,7 @@ class CommentController extends Controller
             $comment->comment_content = Input::get('content');
             $comment->user_id = Input::get('user_id');
             $comment->recette_id = Input::get('recette_id');
+            $comment->rating = Input::get('rating');
             $comment->save();
 
             // redirect
