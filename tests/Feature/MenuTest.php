@@ -40,14 +40,29 @@ class MenuTest extends TestCase
 
     public function testMenuDelete()
     {
-        $user = new User(array('name' => "Elise"));
+        $user = \App\User::create(array(
+            'name' => 'menu1',
+            'email' => 'menu1@email.com',
+            'password' => bcrypt('password'),
+        ));
         $this->be($user);
+        $plat = \App\RecetteType::create(array(
+            'type_name' => 'Plat principal'
+        ));
 
-        $user->id = 60;
-
+        $r1 = \App\Recette::create(array(
+                    'recettes_name' => "recette 2",
+                    'description' => "Quick desc 2",
+                    'image_url' => "",
+                    'type_id' => $plat->id
+                ));
+        $this->be($user);
         $menu = factory(Menu::class)->create([
-            'user_id' => $user->id
-        ]);
+            'user_id' => $user->id,
+             'entree_id' => $r1->id,
+             'plat_id' => $r1->id,
+             'dessert_id' => $r1->id,
+           ]);
 
         $menu1 = Menu::find($menu->id);
         $menu1->delete();
@@ -88,11 +103,28 @@ class MenuTest extends TestCase
 
     public function testMenuShowExist()
     {
-        $user = new User(array('name' => "elise"));
+        $user = \App\User::create(array(
+            'name' => 'menu2',
+            'email' => 'menu2@email.com',
+            'password' => bcrypt('password')
+        ));
+        $plat = \App\RecetteType::create(array(
+            'type_name' => 'Plat principal'
+        ));
+
+        $r1 = \App\Recette::create(array(
+                    'recettes_name' => "recette",
+                    'description' => "Quick desc",
+                    'image_url' => "",
+                    'type_id' => $plat->id
+                ));
         $this->be($user);
-
-        $menu = factory(Menu::class)->create();
-
+        $menu = factory(Menu::class)->create([
+            'user_id' => $user->id,
+             'entree_id' => $r1->id,
+             'plat_id' => $r1->id,
+             'dessert_id' => $r1->id,
+        ]);
         $this->assertDatabaseHas('menus',
             ['id' => $menu->id]
         );
