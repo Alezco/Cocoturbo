@@ -33,10 +33,10 @@ ENTRYPOINT [ "/usr/sbin/apache2" ]
 
 RUN npm install
 RUN /usr/local/bin/composer.phar install
-FROM mysql:latest
-RUN service mysql start
-RUN mysql -u root "CREATE DATABASE IF NOT EXISTS cocoturbo;"
-RUN php artisan migrate
-RUN php artisan db:seed
+#RUN apt-get -y install mysql-server
+#RUN service mysql start
+#RUN mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS cocoturbo;"
+#RUN php artisan migrate
+#RUN php artisan db:seed
 
 CMD ["-D", "FOREGROUND"]
