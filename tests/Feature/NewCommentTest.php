@@ -96,6 +96,7 @@ class NewCommentTest extends BaseTestCase
             ->assertResponseOk()
             ->see('Commentaire')
             ->type('my content', 'content')
+            ->type('3', 'rating')
             ->press('Poster le commentaire')
             ->assertResponseOk();
 
