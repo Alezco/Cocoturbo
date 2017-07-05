@@ -1,8 +1,9 @@
+#UBUNTU
 FROM ubuntu:latest
-
 RUN apt-get update
-RUN apt-get -y install apache2
 
+#APACHE
+RUN apt-get -y install apache2
 RUN apt-get -y install libapache2-mod-php7.0 php7.0 php7.0-cli php-xdebug php7.0-mbstring sqlite3 php7.0-mysql \
     php-imagick php-memcached php-pear curl imagemagick php7.0-dev php7.0-phpdbg php7.0-gd php7.0-zip php7.0-curl \
     npm nodejs php7.0-json php7.0-curl php7.0-sqlite3 php7.0-intl apache2 wget libsasl2-dev libssl-dev \
@@ -23,20 +24,27 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 
+#MYSQL
+RUN echo "mysql-server-5.5 mysql-server/root_password password password" | debconf-set-selections
+RUN echo "mysql-server-5.5 mysql-server/root_password_again password password" | debconf-set-selections
+RUN apt-get -y install mysql-server
+
+#COPY PROJECT
 COPY . /var/www/html
 COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
-WORKDIR /var/www/html
 
+#ENTRY
+WORKDIR /var/www/html
 EXPOSE 80
 
-ENTRYPOINT [ "/usr/sbin/apache2" ]
-
+#NPM AND COMPOSER
 RUN npm install
 RUN /usr/local/bin/composer.phar install
-#RUN apt-get -y install mysql-server
-#RUN service mysql start
-#RUN mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS cocoturbo;"
-#RUN php artisan migrate
-#RUN php artisan db:seed
 
-CMD ["-D", "FOREGROUND"]
+#DATABASE
+RUN service mysql start \
+    && mysql -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS cocoturbo;" \
+    && php artisan migrate \
+    && php artisan db:seed
+
+CMD ["bash", "run.sh"]
