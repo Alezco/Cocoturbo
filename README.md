@@ -36,3 +36,15 @@ $ php artisan dusk
 ```sh
 $ ./vendor/bin/phpunit
 ```
+
+## Docker
+
+Get Docker and docker-compose
+https://store.docker.com/search?type=edition&offering=community
+
+To launch Docker :
+```sh
+$ docker-compose down
+$ docker-compose build
+$ docker-compose up
+```
