@@ -53,6 +53,7 @@ class RecetteController extends Controller {
     {
         $rules = array(
             'name'       => 'required|max:191|unique:recettes,recettes_name',
+            'description' => 'required',
             'type'      => 'required',
             'image'     => 'nullable'
         );
@@ -156,6 +157,7 @@ class RecetteController extends Controller {
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'name'       => 'required|max:191|unique:recettes,recettes_name',
+            'description' => 'required',
             'type'      => 'required',
             'image'     => 'nullable'
         );
