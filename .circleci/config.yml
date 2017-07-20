@@ -35,9 +35,8 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
-      - run: |
-        sudo apt install -y mysql-server
-        mysql -u ubuntu -p < "CREATE DATABASE cocoturbo;"
+      - run: sudo apt install -y mysql-server
+      - run: mysql -u ubuntu -p < "CREATE DATABASE cocoturbo;"
       - run:
           name: Run PhpUnit
           command: php artisan cache:clear && php artisan migrate --env --force && php atisan db:seed && ./vendor/bin/phpunit
