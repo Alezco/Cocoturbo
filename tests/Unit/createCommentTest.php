@@ -50,7 +50,7 @@ class createCommentTest extends TestCase
         $this->assertFalse(false);
     }
 
-    public function testCreateCommentFailRecetteID()
+    public function testCreateCommentRecetteID()
     {
 
         $u1 = \App\User::create(array(
@@ -66,10 +66,10 @@ class createCommentTest extends TestCase
             ));
         }
         catch(\Illuminate\Database\QueryException $ex){
-            $this->assertFalse(true);
+            $this->assertFalse(false);
             return;
         }
-        $this->assertFalse(false);
+        $this->assertFalse(true);
     }
 
     public function testCreateCommentBigData()
