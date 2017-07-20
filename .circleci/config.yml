@@ -7,10 +7,10 @@ jobs:
       - image: notnoopci/php:7.1-apache-node
       - image: circleci/mysql:5.7
         environment:
-          - MYSQL_USER=root
+          - MYSQL_USER=ubuntu
           - MYSQL_PASSWORD=
           - MYSQL_ALLOW_EMPTY_PASSWORD=true
-          - MYSQL_DATABASE=cocoturbo
+          - MYSQL_DATABASE=circle_test
     steps:
       - run:
           name: Install PHP extensions
@@ -37,4 +37,4 @@ jobs:
             - vendor
       - run:
           name: Run PhpUnit
-          command: php artisan migrate -y && php atisan db:seed && ./vendor/bin/phpunit
+          command: php artisan migrate && php atisan db:seed && ./vendor/bin/phpunit
