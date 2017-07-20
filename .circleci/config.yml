@@ -16,8 +16,6 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
-      - run: sudo echo "mysql-server-5.7 mysql-server/root_password password password" | debconf-set-selections
-      - run: sudo echo "mysql-server-5.7 mysql-server/root_password_again password password" | debconf-set-selections
       - run: apt-get -y install mysql-server
       - run: sudo service mysql start && mysql -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS cocoturbo"
       - run: php artisan migrate
