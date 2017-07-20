@@ -14,7 +14,7 @@ class AddNameToMenus extends Migration
     public function up()
     {
         Schema::table('menus', function($table) {
-            $table->string('menu_title');
+            $table->string('menu_title')->nullable();
         });
     }
 
