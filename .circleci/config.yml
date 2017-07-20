@@ -1,11 +1,16 @@
 version: 2
 
 jobs:
-jobs:
   build:
     working_directory: ~/Cocoturbo
     docker:
       - image: notnoopci/php:7.1-apache-node
+      - image: mysql:5.6
+        environment:
+          - MYSQL_USER=ubuntu
+          - MYSQL_PASSWORD=
+          - MYSQL_ALLOW_EMPTY_PASSWORD=true
+          - MYSQL_DATABASE=circle_test
     steps:
       - run:
           name: Install PHP extensions
@@ -30,26 +35,7 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
-      - run:
-          name: fuck
-          command: |
-            export DEBIAN_FRONTEND=noninteractive
-            curl -LO https://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
-            echo mysql-apt-config mysql-apt-config/select-product          select Apply              | sudo debconf-set-selections
-            echo mysql-apt-config mysql-apt-config/select-server           select mysql-5.7          | sudo debconf-set-selections
-            echo mysql-apt-config mysql-apt-config/select-connector-python select none               | sudo debconf-set-selections
-            echo mysql-apt-config mysql-apt-config/select-workbench        select none               | sudo debconf-set-selections
-            echo mysql-apt-config mysql-apt-config/select-utilities        select none               | sudo debconf-set-selections
-            echo mysql-apt-config mysql-apt-config/select-connector-odbc   select connector-odbc-x.x | sudo debconf-set-selections
-            sudo -E dpkg -i mysql-apt-config_0.7.3-1_all.deb
-            sudo apt-get update
-            echo mysql-community-server mysql-community-server/re-root-pass password ${mysql_root_password} | sudo debconf-set-selections
-            echo mysql-community-server mysql-community-server/root-pass    password ${mysql_root_password} | sudo debconf-set-selections
-            sudo -E apt-get -y install mysql-community-server
-            echo "Checking installed version....."
-            mysql -D mysql -e "SELECT version()"
-            echo "Done!!"
-            mysql -u ubuntu -p < "CREATE DATABASE cocoturbo;"
+      - run: sudo apt install -y mysql-server
       - run:
           name: Run PhpUnit
           command: php artisan cache:clear && php artisan migrate --env --force && php atisan db:seed && ./vendor/bin/phpunit
