@@ -35,6 +35,9 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
+      -run:
+          name: lknlrnk
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m && nc -z 127.0.0.1 3306
       - run:
           name: Run mysql fucking command
           command: docker exec -i some_mysql_container mysql -uubuntu -p  <<< "CREATE DATABASE Cocoturbo;"
