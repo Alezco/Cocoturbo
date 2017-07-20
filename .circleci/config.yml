@@ -25,3 +25,5 @@ jobs:
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
+      - run: unzip jmeter/apache-jmeter-3.2.zip
+      - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
