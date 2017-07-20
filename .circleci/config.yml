@@ -26,7 +26,9 @@ jobs:
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
       - run: unzip jmeter/apache-jmeter-3.2.zip
-      - run: sudo apt-get install default-jre
+      - run: sudo apt-get install software-properties-common python-software-properties
+      - run: sudo add-apt-repository ppa:openjdk-r/ppa
+      - run: sudo apt-get update && sudo apt-get install openjdk-8-jre
       - run: java -version
       - run: sudo update-alternatives --config java
       - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
