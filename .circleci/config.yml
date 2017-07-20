@@ -14,10 +14,7 @@ jobs:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
       - run: sudo apt-get install libsqlite3-dev -y
-      - run: curl -sS https://getcomposer.org/installer | php
-      - run: sudo mv composer.phar /usr/local/bin/composer.phar
-      - run: alias composer='/usr/local/bin/composer.phar'
-      - run: npm config set registry http://registry.npmjs.org/
+      #- run: npm config set registry http://registry.npmjs.org/
       - run: composer install -n --prefer-dist
       - run: php artisan migrate
       - run: php artisan db:seed
