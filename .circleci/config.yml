@@ -20,7 +20,7 @@ jobs:
             - vendor
       - run: touch storage/database.sqlite
       - run: touch storage/testing.sqlite
-      - run: php artisan migrate --database=cocoturbo --force
+      - run: php artisan migrate --database=sqlite --force
       - run: php artisan migrate
       - run: php artisan db:seed
       - run: php artisan ./vendor/bin/phpunit
