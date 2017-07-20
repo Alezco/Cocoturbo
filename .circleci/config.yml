@@ -1,24 +1,40 @@
 version: 2
+
 jobs:
   build:
+    working_directory: ~/laravel
     docker:
-      - image: notnoopci/php:7.1.5-browsers
-    working_directory: ~/cocoturbo
+      - image: notnoopci/php:7.1-apache-node
+      - image: circleci/mysql:5.7
+        environment:
+          - MYSQL_USER=root
+          - MYSQL_PASSWORD=
+          - MYSQL_ALLOW_EMPTY_PASSWORD=true
+          - MYSQL_DATABASE=cocoturbo
     steps:
+      - run:
+          name: Install PHP extensions
+          command: sudo docker-php-ext-install pdo_mysql
+      - run:
+          name: Install Composer
+          command: 'curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer'
+      - run:
+          name: Display versions
+          command: |
+            php -v
+            composer --version
       - checkout
-      - run: composer self-update
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.json" }}
             - composer-v1-
-      - run: composer install -n --prefer-dist
+      - run:
+          name: Install project dependencies
+          command: composer install -n --prefer-dist
       - save_cache:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
-      - run: sudo apt-get -y install mysql-server
-      - run: sudo service mysql start
-      - run: sudo mysql -e "CREATE DATABASE IF NOT EXISTS cocoturbo"
-      - run: php artisan migrate
-      - run: php artisan db:seed
-      - run: php artisan ./vendor/bin/phpunit
+      - run:
+          name: Run PhpUnit
+          command: ./vendor/bin/phpunit
