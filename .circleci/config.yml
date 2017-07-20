@@ -27,10 +27,11 @@ jobs:
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
       - run: unzip jmeter/apache-jmeter-3.2.zip
-      - run: sudo apt-get install software-properties-common
-      - run: sudo add-apt-repository ppa:webupd8team/java
-      - run: sudo echo deb http://http.debian.net/debian jessie-backports main >> /etc/apt/sources.list
-      - run: sudo apt-get update
+      - run: cd /tmp && wget http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz\?AuthParam\=1458001079_a6c78c74b34d63befd53037da604746c
+      && tar xzf jdk-8u74-linux-x64.tar.gz?AuthParam=1458001079_a6c78c74b34d63befd53037da604746c && sudo mv jdk1.8.0_74 /opt && cd /opt/jdk1.8.0_74/
+      && sudo update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_91/bin/java 2 && sudo update-alternatives --config java // select version  && sudo update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_91/bin/jar 2
+      && sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_91/bin/javac 2  && sudo update-alternatives --set jar /opt/jdk1.8.0_91/bin/jar  && sudo update-alternatives --set javac /opt/jdk1.8.0_74/bin/javac
+      && java -version // you should have the updated java
       - run: java -version
       - run: sudo update-alternatives --config java
       - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
