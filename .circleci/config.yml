@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: notnoopci/php:7.1.5-browsers
-      - image: circleci/mysql:latest
     working_directory: ~/laravel
     steps:
       - checkout
