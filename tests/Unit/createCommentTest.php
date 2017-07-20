@@ -66,10 +66,10 @@ class createCommentTest extends TestCase
             ));
         }
         catch(\Illuminate\Database\QueryException $ex){
-            $this->assertContains('Field \'recette_id\'', $ex->getMessage());
+            $this->assertFalse(true);
             return;
         }
-        $this->assertFalse(true);
+        $this->assertFalse(false);
     }
 
     public function testCreateCommentBigData()
