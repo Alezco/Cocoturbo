@@ -1,7 +1,5 @@
 version: 2
 jobs:
-  environment:
-    PATH: '${PATH}:${HOME}/.composer/vendor/bin'
   build:
     docker:
       - image: circleci/php:7.1.5-browsers
@@ -15,6 +13,7 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
+      - run: export PATH='${PATH}:${HOME}/.composer/vendor/bin'
       #- run: npm config set registry http://registry.npmjs.org/
       - run: composer install -n --prefer-dist
       - run: php artisan migrate
