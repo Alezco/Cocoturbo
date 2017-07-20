@@ -36,5 +36,8 @@ jobs:
           paths:
             - vendor
       - run:
+          name: Run mysql fucking command
+          command: docker exec -i some_mysql_container mysql -uubuntu -p  <<< "CREATE DATABASE Cocoturbo;"
+      - run:
           name: Run PhpUnit
           command: php artisan cache:clear && php artisan migrate --force && php atisan db:seed && ./vendor/bin/phpunit
