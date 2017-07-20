@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/laravel
     steps:
       - checkout
+      - run: sudo apt-get update
       - run: sudo apt-get install -y mysql-server
       - run: composer self-update
       - run: mysql --version
