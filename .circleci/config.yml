@@ -32,7 +32,9 @@ jobs:
             - vendor
       - run:
           name: fuck
-          command: sudo apt-get install mysql
+          command: |
+            sudo apt-get install mysql
+            mysql -u ubuntu -p < "CREATE DATABASE cocoturbo;"
       - run:
           name: Run PhpUnit
           command: php artisan cache:clear && php artisan migrate --env --force && php atisan db:seed && ./vendor/bin/phpunit
