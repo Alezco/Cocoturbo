@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run: sudo apt-get install -y mysql-server
       - run: composer self-update
+      - run: mysql --version
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.json" }}
