@@ -8,6 +8,7 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_USER=root
+          - MYSQL_ROOT_PASSWORD=ubuntu
           - MYSQL_PASSWORD=
           - MYSQL_ALLOW_EMPTY_PASSWORD=true
           - MYSQL_DATABASE=circle_test
@@ -35,6 +36,10 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
+            
+      - run:
+          name: Run mysql fucking test
+          command: mysql -u ubuntu -e "create database circle_test"
       - run:
           name: Run PhpUnit
           command: php artisan cache:clear && php artisan migrate --force && php atisan db:seed && ./vendor/bin/phpunit
