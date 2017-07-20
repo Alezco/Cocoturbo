@@ -2,12 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: notnoopci/php:7.1.5-browsers
+      - image: circleci/mysql:latest
+      - image: circleci/php:latest
     working_directory: ~/laravel
     steps:
       - checkout
-      - run: sudo apt-get update
-      - run: sudo apt-get install -y mysql-server
       - run: composer self-update
       - run: mysql --version
       - restore_cache:
