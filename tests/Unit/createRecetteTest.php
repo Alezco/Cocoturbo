@@ -36,6 +36,7 @@ class createRecetteTest extends TestCase
                               6. le jus de 3 citrons jaunes.
                               7. huile d'olive vierge extra et sel.",
             'type_id' => $entree->id,
+            'url' => "anurl",
         ));
 
         $this->assertDatabaseHas('recettes', [
