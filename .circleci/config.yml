@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get install -y php7.1-sqlite3 libsqlite3-dev
+      - run: sudo apt-get install -y libsqlite3-dev
       - run: composer self-update
       - restore_cache:
           keys:
