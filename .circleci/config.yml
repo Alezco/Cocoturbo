@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/laravel
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev php7.1-mysql
+      - run: sudo apt install -y libsqlite3-dev
       - run: composer self-update
       - restore_cache:
           keys:
