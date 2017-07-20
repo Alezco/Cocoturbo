@@ -22,5 +22,5 @@ jobs:
       - run: touch storage/testing.sqlite
       - run: touch database/database.sqlite
       - run: php artisan migrate --env=testing --database=sqlite --force
-      - run: php artisan db:seed
+      - run: php artisan db:seed --env=testing --database=sqlite --force
       - run: ./vendor/bin/phpunit
