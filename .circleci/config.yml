@@ -17,7 +17,7 @@ jobs:
       - run: sudo mv composer.phar /usr/local/bin/composer.phar
       - run: alias composer='/usr/local/bin/composer.phar'
       - run: composer self-update
-      #- run: npm config set registry http://registry.npmjs.org/
+      - run: npm config set registry http://registry.npmjs.org/
       - run: composer install -n --prefer-dist
       - run: php artisan migrate
       - run: php artisan db:seed
