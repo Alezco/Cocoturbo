@@ -36,11 +36,5 @@ jobs:
           paths:
             - vendor
       - run:
-          name: lknlrnk
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m && nc -z 127.0.0.1 3306
-      - run:
-          name: Run mysql fucking command
-          command: docker exec -i some_mysql_container mysql -uubuntu -p  <<< "CREATE DATABASE Cocoturbo;"
-      - run:
           name: Run PhpUnit
-          command: php artisan cache:clear && php artisan migrate --force && php atisan db:seed && ./vendor/bin/phpunit
+          command: php artisan cache:clear && php artisan migrate --env --force && php atisan db:seed && ./vendor/bin/phpunit
