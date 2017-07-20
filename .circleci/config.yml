@@ -16,5 +16,4 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
-      - run: ls && pwd
-      - run: php artisan ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpunit
