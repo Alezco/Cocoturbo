@@ -16,7 +16,7 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
-      - run: apt-get -y install mysql-server
+      - run: sudo apt-get -y install mysql-server
       - run: sudo service mysql start && mysql -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS cocoturbo"
       - run: php artisan migrate
       - run: php artisan db:seed
