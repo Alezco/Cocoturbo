@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: notnoopci/php:7.1.5-browsers
-    working_directory: ~/laravel
+    working_directory: ~/cocoturbo
     steps:
       - checkout
       - run: composer self-update
