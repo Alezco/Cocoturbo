@@ -2,24 +2,22 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.1.5-browsers
-      - image: circleci/mysql:5.7
-
+      - image: notnoopci/php:7.1.5-browsers
     working_directory: ~/laravel
-
     steps:
       - checkout
+      - run: sudo apt install -y libsqlite3-dev
+      - run: composer self-update
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "composer.json" }}
-          - v1-dependencies-
-      - run: sudo apt-get install libsqlite3-dev -y
-      #- run: npm config set registry http://registry.npmjs.org/
+            - composer-v1-{{ checksum "composer.json" }}
+            - composer-v1-
       - run: composer install -n --prefer-dist
-      - run: php artisan migrate
-      - run: php artisan db:seed
       - save_cache:
+          key: composer-v1-{{ checksum "composer.json" }}
           paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run: phpunit
+            - vendor
+      - run: touch storage/testing.sqlite
+      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      - run: ./vendor/bin/codecept build
+      - run: ./vendor/bin/codecept run
