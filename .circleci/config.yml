@@ -1,7 +1,7 @@
 version: 2
 jobs:
   environment:
-      PATH: "${PATH}:${HOME}/.composer/vendor/bin"
+    PATH: '${PATH}:${HOME}/.composer/vendor/bin'
   build:
     docker:
       - image: circleci/php:7.1.5-browsers
