@@ -36,6 +36,7 @@ jobs:
           paths:
             - vendor
       - run: sudo apt install -y mysql-server
+      - run: sudo service mysql start
       - run: mysql -u ubuntu <<< "CREATE DATABASE cocoturbo;"
       - run:
           name: Run PhpUnit
