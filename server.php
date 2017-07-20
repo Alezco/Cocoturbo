@@ -17,8 +17,5 @@ $uri = urldecode(
 if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
-$env = $app->detectEnvironment(array(
-    'production' => array('your-forge-staging-server-host-name-here'),
-    'local' => array('homestead', '.local')
-));
+
 require_once __DIR__.'/public/index.php';
