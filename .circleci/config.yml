@@ -19,7 +19,6 @@ jobs:
           paths:
             - vendor
       - run: touch storage/testing.sqlite
-      - run: mysql -e "CREATE DATABASE IF NOT EXISTS cocoturbo;"
       - run: php artisan migrate --env=testing --database=cocoturbo --force
       - run: php artisan migrate
       - run: php artisan db:seed
