@@ -13,6 +13,7 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
+      - run: ls
       - run: curl -sS https://getcomposer.org/installer | php
       - run: sudo mv composer.phar /usr/local/bin/composer.phar
       - run: alias composer='/usr/local/bin/composer.phar'
