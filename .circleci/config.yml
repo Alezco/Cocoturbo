@@ -37,4 +37,4 @@ jobs:
             - vendor
       - run:
           name: Run PhpUnit
-          command: php artisan migrate && php atisan db:seed && ./vendor/bin/phpunit
+          command: php artisan migrate -y && php atisan db:seed && ./vendor/bin/phpunit
