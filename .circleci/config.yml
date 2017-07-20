@@ -9,11 +9,11 @@ jobs:
 
     steps:
       - checkout
-      - run: npm config set registry http://registry.npmjs.org/
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
+      - run: npm config set registry http://registry.npmjs.org/
       - run: composer install -n --prefer-dist
       - run: php artisan migrate
       - run: php artisan db:seed
