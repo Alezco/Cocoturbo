@@ -48,3 +48,7 @@ $ docker-compose down
 $ docker-compose build
 $ docker-compose up
 ```
+
+## Slack integration
+
+Git event are now integrated on slack
