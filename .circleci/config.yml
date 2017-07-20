@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.1.5-browsers
       - image: circleci/mysql:5.7
 
-    working_directory: ~/repo
+    working_directory: .
 
     steps:
       - checkout
@@ -13,9 +13,9 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
-      - run: curl -sS https://getcomposer.org/installer | php
-      - run: sudo mv composer.phar /usr/local/bin/composer.phar
-      - run: alias composer='/usr/local/bin/composer.phar'
+      #- run: curl -sS https://getcomposer.org/installer | php
+      #- run: sudo mv composer.phar /usr/local/bin/composer.phar
+      #- run: alias composer='/usr/local/bin/composer.phar'
       #- run: npm config set registry http://registry.npmjs.org/
       - run: composer install -n --prefer-dist
       - run: php artisan migrate
