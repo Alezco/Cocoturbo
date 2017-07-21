@@ -28,6 +28,8 @@ jobs:
       - run: php artisan db:seed --env=testing --database=sqlite --force
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
+      - run: sudo ufw allow 8000/tcp
+      - run: sudo ufw status verbose
       - run: ./vendor/bin/phpunit
       - run: php artisan serve &
   build2:
