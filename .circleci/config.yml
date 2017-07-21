@@ -29,7 +29,7 @@ jobs:
   build2:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
-    working_directory: ~/laravel2
+    working_directory: ~/laravel
     steps:
       - run: java -version
       - run: unzip jmeter/apache-jmeter-3.2.zip
