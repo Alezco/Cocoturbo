@@ -31,12 +31,11 @@ jobs:
       - run: sudo apt-get install default-jre
       - run: sudo apt-get install python-software-properties software-properties-common
       - run: sudo add-apt-repository ppa:webupd8team/java
-      - run: su -
-      - run: echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
-      - run: echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-      - run: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-      - run: apt-get update
-      - run: apt-get install oracle-java8-installer
+      - run: sudo echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+      - run: sudo echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+      - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+      - run: sudo apt-get update
+      - run: sudo apt-get install oracle-java8-installer
       - run: sudo apt-get update
       - run: sudo apt-get install oracle-java8-installer
       - run: java -version
