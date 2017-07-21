@@ -38,7 +38,7 @@ WORKDIR /var/www/html
 EXPOSE 80
 
 #NPM AND COMPOSER
-RUN npm install
+RUN npm config set registry http://registry.npmjs.org && npm install
 RUN /usr/local/bin/composer.phar install
 
 #DATABASE
