@@ -4,7 +4,6 @@ jobs:
   build:
     docker:
       - image: notnoopci/php:7.1.5-browsers
-      - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/laravel
     steps:
       - checkout
@@ -35,3 +34,14 @@ jobs:
       - run: java -version
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
+      
+      
+workflows:
+  version: 2
+
+  btd:
+    jobs:
+      - build
+      - build2:
+          requires:
+            - build
