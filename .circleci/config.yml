@@ -21,6 +21,7 @@ jobs:
             - vendor
       - run: touch storage/testing.sqlite
       - run: touch database/database.sqlite
+      - run: cp .env.testing .env
       - run: php artisan migrate --env=testing --database=sqlite --force
       - run: php artisan db:seed --env=testing --database=sqlite --force
       - run: cat database/database.sqlite
