@@ -71,6 +71,7 @@ class createRecetteTest extends TestCase
             'type_id' => $entree->id,
         ));
 
+        
         try {
             $r2 = \App\Recette::create(array(
                 'recettes_name' => "Cake du duplicata",
