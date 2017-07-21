@@ -52,4 +52,4 @@ $ docker-compose up
 ## Slack integration
 
 Git event are now integrated on slack
-Test 2 !
+Test !
