@@ -29,7 +29,6 @@ jobs:
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
-      - run: php artisan serve &
       - run: sudo apt-get update && sudo apt-get upgrade --show-upgraded
       - run: wget http://download.joedog.org/siege/siege-latest.tar.gz
       - run: tar -zxvf siege-latest.tar.gz
