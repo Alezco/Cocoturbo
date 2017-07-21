@@ -34,7 +34,7 @@ jobs:
       - run: wget http://download.joedog.org/siege/siege-latest.tar.gz
       - run: tar -zxvf siege-latest.tar.gz
       - run: cd siege-*/ && sudo apt-get install build-essential && ./configure && make && sudo make install
-      - run: sudo php artisan serve & && sudo siege 127.0.0.1:8000/
+      - run: sudo siege 127.0.0.1:8000/
   build2:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
