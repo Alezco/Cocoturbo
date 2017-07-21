@@ -1,7 +1,5 @@
 defaults: &defaults
-  working_directory: /tmp
-  docker:
-    - image: buildpack-deps:jessie
+  working_directory: ~/laravel
 
 version: 2
 
