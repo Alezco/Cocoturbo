@@ -1,5 +1,7 @@
 defaults: &defaults
   working_directory: ~/laravel
+  docker:
+      - image: notnoopci/php:7.1.5-browsers
 
 version: 2
 
