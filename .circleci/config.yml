@@ -9,7 +9,6 @@ jobs:
   build:
     docker:
       - image: notnoopci/php:7.1.5-browsers
-    working_directory: ~/laravel
     <<: *defaults
     steps:
       - checkout
@@ -35,7 +34,6 @@ jobs:
   build2:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
-    working_directory: ~/laravel
     <<: *defaults
     steps:
       - checkout
