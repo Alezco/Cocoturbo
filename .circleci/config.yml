@@ -28,6 +28,7 @@ jobs:
       - run: php artisan db:seed --env=testing --database=sqlite --force
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
+      - run: sudo apt-get install aptitude
       - run: sudo aptitude install ufw
       - run: sudo ufw allow 8000/tcp
       - run: sudo ufw status verbose
