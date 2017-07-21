@@ -1,11 +1,14 @@
 version: 2
+
 jobs:
   build:
     docker:
       - image: notnoopci/php:7.1.5-browsers
-    working_directory: ~/cocoturbo
+      - image: circleci/openjdk:8-jdk-browsers
+    working_directory: ~/laravel
     steps:
       - checkout
+      - run: sudo apt install -y libsqlite3-dev
       - run: composer self-update
       - restore_cache:
           keys:
@@ -16,4 +19,11 @@ jobs:
           key: composer-v1-{{ checksum "composer.json" }}
           paths:
             - vendor
+      - run: touch storage/testing.sqlite
+      - run: touch database/database.sqlite
+      - run: cp .env.testing .env
+      - run: php artisan migrate --env=testing --database=sqlite --force
+      - run: php artisan db:seed --env=testing --database=sqlite --force
+      - run: cat database/database.sqlite
+      - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
