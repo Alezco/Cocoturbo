@@ -44,7 +44,6 @@ jobs:
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter -n -t ./coco.jmx
       
-      
 workflows:
   version: 2
   btd:
