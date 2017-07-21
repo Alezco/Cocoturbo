@@ -37,7 +37,7 @@ jobs:
     steps:
       - checkout
       - run: java -version
-      - run: wget http://127.0.0.1:8000/login
+      - run: sudo wget http://127.0.0.1:8000/login
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter -n -t ./coco.jmx
       
