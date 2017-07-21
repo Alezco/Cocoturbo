@@ -34,6 +34,7 @@ jobs:
       - run: wget http://download.joedog.org/siege/siege-latest.tar.gz
       - run: tar -zxvf siege-latest.tar.gz
       - run: cd siege-*/ && sudo apt-get install build-essential && ./configure && make && sudo make install
+      - run: siege http://localhost:8000/
   build2:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -41,7 +42,6 @@ jobs:
     steps:
       - checkout
       - run: java -version
-      - run: sudo wget http://localhost:8000/login
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter -n -t ./coco.jmx
       
