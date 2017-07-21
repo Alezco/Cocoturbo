@@ -32,6 +32,7 @@ jobs:
     working_directory: ~/laravel
     steps:
       - run: java -version
+      - run ls
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
       
@@ -41,7 +42,4 @@ workflows:
 
   btd:
     jobs:
-      - build
-      - build2:
-          requires:
-            - build
+      - build2
