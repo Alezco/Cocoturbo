@@ -31,8 +31,8 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/laravel
     steps:
+      - checkout
       - run: java -version
-      - run: ls
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
       
