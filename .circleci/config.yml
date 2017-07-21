@@ -39,7 +39,10 @@ jobs:
       
 workflows:
   version: 2
-
   btd:
     jobs:
-      - build2
+      - build
+      - build2:
+          requires:
+            - build
+      
