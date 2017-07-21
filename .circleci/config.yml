@@ -42,8 +42,10 @@ workflows:
   version: 2
   btd:
     jobs:
-      - build
+      - build:
+        context: org-global
       - build2:
           requires:
             - build
+          context: org-global
       
