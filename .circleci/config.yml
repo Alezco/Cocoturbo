@@ -29,7 +29,7 @@ jobs:
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
       - run: sudo  apt-get --yes --force-yes install aptitude
-      - run: sudo aptitude install ufw
+      - run: sudo aptitude --yes --force-yes  install ufw
       - run: sudo ufw allow 8000/tcp
       - run: sudo ufw status verbose
       - run: ./vendor/bin/phpunit
