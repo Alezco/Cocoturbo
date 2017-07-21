@@ -13,12 +13,12 @@ class ChangeTableFormat extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE users ENGINE = InnoDB');
+        /*DB::statement('ALTER TABLE users ENGINE = InnoDB');
         DB::statement('ALTER TABLE recettes ENGINE = InnoDB');
         DB::statement('ALTER TABLE recette_types ENGINE = InnoDB');
         DB::statement('ALTER TABLE menus ENGINE = InnoDB');
         DB::statement('ALTER TABLE favorites ENGINE = InnoDB');
-        DB::statement('ALTER TABLE comments ENGINE = InnoDB');
+        DB::statement('ALTER TABLE comments ENGINE = InnoDB');*/
     }
 
     /**
