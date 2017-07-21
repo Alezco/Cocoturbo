@@ -29,7 +29,7 @@ jobs:
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
-      - run: php artisan serve
+      - run: php artisan serve &
   build2:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -37,7 +37,7 @@ jobs:
     steps:
       - checkout
       - run: java -version
-      - run: wget 127.0.0.1/login
+      - run: wget http://127.0.0.1:8000/login
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: ./apache-jmeter-3.2/bin/jmeter -n -t ./coco.jmx
       
