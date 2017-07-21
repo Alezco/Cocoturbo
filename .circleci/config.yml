@@ -1,11 +1,13 @@
+defaults: &defaults
+  working_directory: ~/laravel
+
 version: 2
 
 jobs:
   build:
     docker:
       - image: notnoopci/php:7.1.5-browsers
-      - image: circleci/openjdk:8-jdk-browsers
-    working_directory: ~/laravel
+    <<: *defaults
     steps:
       - checkout
       - run: sudo apt install -y libsqlite3-dev
@@ -27,3 +29,30 @@ jobs:
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
+      - run: sudo apt-get update && sudo apt-get upgrade --show-upgraded
+      - run: wget http://download.joedog.org/siege/siege-latest.tar.gz
+      - run: tar -zxvf siege-latest.tar.gz
+      - run: cd siege-*/ && sudo apt-get install build-essential && ./configure && make && sudo make install
+      - run: |
+            php artisan serve &
+            sleep 10
+            sudo siege -t 20 127.0.0.1:8000/
+  build2:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    <<: *defaults
+    steps:
+      - checkout
+      - run: java -version
+      - run: unzip jmeter/apache-jmeter-3.2.zip
+      - run: ./apache-jmeter-3.2/bin/jmeter -n -t ./coco.jmx
+      
+workflows:
+  version: 2
+  btd:
+    jobs:
+      - build
+      - build2:
+          requires:
+            - build
+      
