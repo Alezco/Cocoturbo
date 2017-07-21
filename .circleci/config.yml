@@ -27,6 +27,7 @@ jobs:
       - run: cat database/database.sqlite
       - run: cat storage/testing.sqlite
       - run: ./vendor/bin/phpunit
+      - run: java -version
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: sudo apt-get install default-jre
       - run: sudo apt-get install python-software-properties software-properties-common
