@@ -29,6 +29,7 @@ jobs:
       - run: ./vendor/bin/phpunit
       - run: unzip jmeter/apache-jmeter-3.2.zip
       - run: sudo apt-get install default-jre
+      - run: sudo apt-get install oracle-java8-installer
       - run: java -version
       - run: sudo update-alternatives --config java
       - run: ./apache-jmeter-3.2/bin/jmeter coco.jmx
