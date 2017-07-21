@@ -36,7 +36,7 @@ jobs:
       - run: |
             php artisan serve &
             sleep 10
-            sudo siege 127.0.0.1:8000/
+            sudo siege -t 20 127.0.0.1:8000/
   build2:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
