@@ -1,3 +1,8 @@
+defaults: &defaults
+  working_directory: /tmp
+  docker:
+    - image: buildpack-deps:jessie
+
 version: 2
 
 jobs:
@@ -5,6 +10,7 @@ jobs:
     docker:
       - image: notnoopci/php:7.1.5-browsers
     working_directory: ~/laravel
+    <<: *defaults
     steps:
       - checkout
       - run: sudo apt install -y libsqlite3-dev
@@ -30,6 +36,7 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
     working_directory: ~/laravel
+    <<: *defaults
     steps:
       - checkout
       - run: php artisan serve
